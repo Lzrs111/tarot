@@ -10,19 +10,19 @@ class ListContainer extends React.Component {
             }
         }
         componentWillReceiveProps(nextProps) {
-            if (nextProps.cardDB.hasOwnProperty("0")){
-                var suites = ["Wands","Cups","Pentacles","Swords"]
-                var count = 0
+            if (nextProps.cardDB.hasOwnProperty("Wands")){
+                var suites = Object.keys(nextProps.cardDB) 
                 suites = suites.map((val,ind)=>{
-                   let content = []
-                   for (var i = count; i < count+14 ; i++) {
-                       content.push(nextProps.cardDB[i]["name"])
-                   } 
-                   count+=14
-                   return (
-                       <List content={content} title={val} setCard={this.props.setCard} prefix={ind}/>
-                   )
-                   })
+                    let content = []
+                    Object.keys(nextProps.cardDB[suites[ind]]).forEach(element=> {
+                        content.push(nextProps.cardDB[suites[ind]][element]["name"])
+                    })
+                    return (
+                        <List content={content} setCard={this.props.setCard} title={suites[ind]} suite={suites[ind]} />
+                    )
+                    })
+
+             
                 this.setState({
                     content: suites
                 })

@@ -32,24 +32,7 @@ class List extends Component {
                             return (
                                 <li style={{color:"white"}} onClick={()=>{
                                     if (typeof(this.props.setCard)=="function") {
-                                        var num
-                                        switch (this.props.prefix) {
-                                            case 0:
-                                                num = ind+0
-                                                break;
-                                            case 1:
-                                                num = ind+14
-                                                break;
-                                            case 2:
-                                                num = ind+28
-                                                break;
-                                            case 3:
-                                                num = ind+42
-                                                break;
-                                            default:
-                                                break;
-                                        }
-                                        this.props.setCard(num)
+                                        this.props.setCard(this.props.suite,ind)
                                     }
                                 }}>
                                     {val}

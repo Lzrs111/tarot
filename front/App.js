@@ -37,10 +37,14 @@ export default class App extends React.Component {
     getCards() {
         let num = this.state.game
         let cards = {}
-        let len = Object.keys(this.state.cardDB).length-1
         for (var i = 0; i < num; i++) {
-            let cardNo = Math.floor(Math.random()*len)
-            let random = this.state.cardDB[cardNo]
+            let suiteNo = Object.keys(this.state.cardDB)[Math.floor(Math.random()*4)]
+            let cut=13;
+            if (suiteNo == 4){
+                cut = 21
+            } 
+            let cardNo = Math.floor(Math.random()*cut)
+            let random = this.state.cardDB[suiteNo][cardNo]
             cards = Object.assign(cards,{[i]:random})
         }
         this.setState({
@@ -49,9 +53,9 @@ export default class App extends React.Component {
             console.log(this.state.cards)
             })
     }   
-    setCard(number) {
+    setCard(suite,number) {
         let c = {}
-        c = Object.assign(c,{0:this.state.cardDB[number]}) 
+        c = Object.assign(c,{0:this.state.cardDB[suite][number]}) 
         this.setState({
             cards: c 
         },()=>{
