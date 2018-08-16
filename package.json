@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "nodemon ./build/server.js"
+    "test": "nodemon ./build/server.js",
+    "start": "node ./build/server.js"
   },
   "author": "",
   "dependencies": {
